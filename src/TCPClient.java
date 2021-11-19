@@ -170,7 +170,7 @@ public class TCPClient
             //actually close the connection
             try
             {
-                System.out.println("\nClosing connection...");
+                System.out.println("Closing connection...");
                 link.close();
             }
 
@@ -220,7 +220,6 @@ class ServConsole extends Thread
             try
             {
                 response = fromServ.readLine();
-            //System.out.println("\rLISTENING -----------");
                 if (response!=null)
                 {         //the client isnt listening for some reason here
                     if (!response.equals("initializing..."))
@@ -234,7 +233,7 @@ class ServConsole extends Thread
                     {
                         response = fromServ.readLine();
                         String temp[] = response.split(" "); 
-                       TCPClient.G = Integer.parseInt(temp[1]); //g
+                        TCPClient.G = Integer.parseInt(temp[1]); //g
                         TCPClient.N = Integer.parseInt(temp[3]); //n
 
                         TCPClient.a = (int)(Math.random()*100)+100; //a
@@ -298,6 +297,7 @@ class UserServer extends Thread
                 message = fromUser.readLine();
 //encrypt 
                 toServ.println(encrypt(message,ServConsole.padd));
+            System.out.print("Enter message: ");
             }
             catch(Exception e){System.out.println(e);}
         }while (!message.equals("DONE"));

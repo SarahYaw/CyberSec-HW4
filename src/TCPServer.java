@@ -154,8 +154,6 @@ class ClientHandler extends Thread
             //send G and N to client
             this.out.println("initializing...");
             this.out.println("G: "+TCPServer.G+" N: "+TCPServer.N); //g n
-            //this.out.flush();
-            //System.out.print("G: "+TCPServer.G+"; N: "+TCPServer.N);
 
             int clientKey = Integer.parseInt(this.in.readLine()); //Ak 
 
@@ -173,12 +171,10 @@ class ClientHandler extends Thread
             {
                 myKey = (clientKey * myKey)%TCPServer.N; //SKB
             }
-            //System.out.print("; Session-Key: "+myKey);
             this.out.println(myKey);
             this.out.flush();
 
             this.padd = String.format("%8s",Integer.toBinaryString(myKey & 255)).replace(' ', '0');
-            //System.out.println("; padd: "+padd);    
 
         }
         catch(IOException e){ e.printStackTrace(); }
@@ -252,7 +248,7 @@ class ClientHandler extends Thread
         {
             String message = this.in.readLine();
 //decrypt
-            message = decrypt( message, this.padd); //added user
+            message = decrypt(message, this.padd); //added user
             while (!message.equals("DONE"))
             {
                 message = user +": "+ message;
@@ -302,14 +298,7 @@ class ClientHandler extends Thread
             // Send a report back and close the connection
             this.out.println(encrypt("--Information Received From the Server--", this.padd));
             this.out.flush();
-            //Scanner file = new Scanner(TCPServer.chatLog);
-            //while(file.hasNextLine())
-            //{
-            //    message = file.nextLine();
-//encrypt
-            //    this.out.println(encrypt(message, this.padd));
-            //    this.out.flush();
-            //}
+
 //encrypt
             this.out.println(encrypt("Server received " + TCPServer.numMessages + " messages total", this.padd));
             this.out.flush();
@@ -350,7 +339,6 @@ class ClientHandler extends Thread
                 System.out.println("Server is empty, clearing logs...");    
                 //debugging statement but I like it there^
                 out.close();
-                //file.close();
                 TCPServer.chatLog.delete();
             }
 
