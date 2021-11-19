@@ -11,10 +11,10 @@ public class TCPClientAttack
     private static String input="";
     public static boolean closing=false;
     public static int G, N, myKey, serverKey, a;
+    public static String user = "";
     public static void main(String[] args)
     {
         int port = 0;
-        String user = "";
         boolean hasHost=false, hasPort=false, hasUser=false;
         int hostIndex=0, portIndex=0, userIndex=0; 
         Scanner keyb = new Scanner(System.in);
@@ -271,6 +271,7 @@ class UserServerAttack extends Thread
     private BufferedReader fromUser;
     public static PrintWriter toServ;
     private String message, padd=ServConsoleAttack.padd, bin, word;
+    public String user = TCPClientAttack.user;
     UserServerAttack(PrintWriter pw, BufferedReader cbr)
     {
         fromUser=cbr;
@@ -288,7 +289,8 @@ class UserServerAttack extends Thread
 
     public String attack (String msg) 
     {
-        msg+="\n"+msg;
+        for (int i=0; i<10; i++)
+            msg+="\n"+user+":"+msg;
         return msg;
     }
     @Override
