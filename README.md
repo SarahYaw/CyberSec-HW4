@@ -42,3 +42,12 @@ Multithreaded client and server programs with encryption. The server is able to 
 	
 8. Type "java TCPClientAttack" and type in the credentials required. These include the host, port number, and username. Each of these three are optional, but you will be prompted to type in the username if you do not include it here. Each of these values needs a key to be recognized as well. -h for host, -p for port, and -u for user. If an incorrect key is used, the program will complain and terminate.
 	>Example: java TCPClientAttack -h hostName -u userName -p portName
+
+## Attack Functionality and Observations
+![Screenshot of four terminal windows showing the DOS attack as described below](https://github.com/SarahYaw/CyberSec-HW4/blob/main/Screen%20Shot%202021-11-19%20at%2011.05.35%20AM.png)
+
+Once the TCPClientAttack program is run and the message to spam is entered, all the users see is spam, but the attacker can see the conversation between the users toitally fine so the victim machines would have to filter out the spam, including the server, but the attacker machine is totally free to see what's going on. This could be a way to mask traffic while the attacker does nefarious searching or just a decent DOS attack because any users won't be able to see any messages for more than a millisecond because of the two loops.       
+
+Users can exit gracefully, but upon re-entry thire is still spam and you lose the ability to broadcast. So if the users leave the attacker can no longer surveil the messages. The old user gains the ability to broadcast to the new user but the new user cannot respond. If the old user leaves the new user is still notified but still cannot broadcast.
+
+The newest (formerly old) user can type normally upon reentry, but there is no broadcast. The server still only receives spam. If the attacker leaves function resumes normally.
