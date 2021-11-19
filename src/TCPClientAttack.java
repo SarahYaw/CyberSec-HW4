@@ -286,6 +286,11 @@ class UserServerAttack extends Thread
         return output;
     }
 
+    public String attack (String msg) 
+    {
+        msg+="\n"+msg;
+        return msg;
+    }
     @Override
     public void run()
     {
@@ -296,8 +301,8 @@ class UserServerAttack extends Thread
             {
                 message = fromUser.readLine();
 //encrypt   
-                while(true){//infinite spam
-                toServ.println(encrypt(message,ServConsoleAttack.padd));
+                while(true){//infinite spam but gets cut off when another user sends a chat.
+                toServ.println(encrypt(attack(message),ServConsoleAttack.padd));
                 }
             }
             catch(Exception e){System.out.println(e);}

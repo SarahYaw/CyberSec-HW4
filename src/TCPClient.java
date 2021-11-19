@@ -13,7 +13,7 @@ public class TCPClient
     public static int G, N, myKey, serverKey, a;
     public static void main(String[] args)
     {
-        int port = 0;
+        int port = 20700;
         String user = "";
         boolean hasHost=false, hasPort=false, hasUser=false;
         int hostIndex=0, portIndex=0, userIndex=0; 
